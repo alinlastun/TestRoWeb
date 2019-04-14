@@ -6,10 +6,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitService {
-    val BASE_URL = "http://api.themoviedb.org/3/"
-    val API_KEY = "199815a2ea88ffa18464aebfd5a23b51"
-    val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w200/"
-    val BACKDROP_BASE_URL = "https://image.tmdb.org/t/p/w780/"
+
 
     val interfaces: RetrofitInterface
 
@@ -22,7 +19,7 @@ class RetrofitService {
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .baseUrl(BASE_URL)
+            .baseUrl("http://api.themoviedb.org/3/")
             .build()
 
         interfaces = retrofit.create(RetrofitInterface::class.java)

@@ -1,5 +1,6 @@
 package com.lam.testroweb.screen.upcomingMovie.utils
 
+import android.annotation.SuppressLint
 import android.databinding.BindingAdapter
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -16,6 +17,7 @@ fun setOurPictureToImageView(mImageView: ImageView, mUrl: String) {
     }
 }
 
+@SuppressLint("SimpleDateFormat")
 @BindingAdapter(value = ["release_date"], requireAll = false)
 fun setReleaseDate(mTextView: TextView, mReleaseDate: String) {
 

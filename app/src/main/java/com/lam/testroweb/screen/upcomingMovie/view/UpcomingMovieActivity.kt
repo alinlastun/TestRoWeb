@@ -45,7 +45,7 @@ class UpcomingMovieActivity : AppCompatActivity(),UpcomingView {
     }
 
     override fun getErrorData(strError: String) {
-        Log.d("eeasdfasd","getErrorData: ${strError}")
+        Log.d("eeasdfasd","getErrorData: $strError")
     }
 
     fun onClickItemUpcomingMovie(idMovie: Int){

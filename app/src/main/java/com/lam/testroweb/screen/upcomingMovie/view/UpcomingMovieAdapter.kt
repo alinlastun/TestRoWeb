@@ -10,7 +10,7 @@ import com.lam.testroweb.BR
 import com.lam.testroweb.R
 import com.lam.testroweb.model.UpcomingInfo
 
-class UpcomingMovieAdapter(var upcomingActivity:UpcomingMovieActivity): RecyclerView.Adapter<UpcomingMovieAdapter.PaymentMethodHolder>() {
+class UpcomingMovieAdapter(private var upcomingActivity:UpcomingMovieActivity): RecyclerView.Adapter<UpcomingMovieAdapter.PaymentMethodHolder>() {
 
     private var upcomingMoviedInfoList: MutableList<UpcomingInfo> = ArrayList()
 
@@ -30,7 +30,7 @@ class UpcomingMovieAdapter(var upcomingActivity:UpcomingMovieActivity): Recycler
         return upcomingMoviedInfoList.size
     }
 
-    class PaymentMethodHolder(private val binding: ViewDataBinding, var activity:UpcomingMovieActivity) : RecyclerView.ViewHolder(binding.root) {
+    class PaymentMethodHolder(private val binding: ViewDataBinding, private var activity:UpcomingMovieActivity) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: UpcomingInfo) {
             binding.setVariable(BR.upcomingInfo, data)
             binding.setVariable(BR.upcomingActivity, activity)

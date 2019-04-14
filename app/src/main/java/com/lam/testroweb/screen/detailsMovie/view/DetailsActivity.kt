@@ -1,5 +1,6 @@
 package com.lam.testroweb.screen.detailsMovie.view
 
+import android.annotation.SuppressLint
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -24,7 +25,6 @@ class DetailsActivity : AppCompatActivity(),DetailsView {
 
     private lateinit var mBinding: com.lam.testroweb.databinding.ActivityDetailsBinding
     private lateinit var detailsPresenter: DetailsPresenter
-    lateinit var detailsModel: DetailsMovie
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,6 +82,7 @@ class DetailsActivity : AppCompatActivity(),DetailsView {
 
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun transformeDate(mReleaseDate:String):String{
         val nCalendar = Calendar.getInstance()
         val sdf = SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH)
