@@ -10,8 +10,8 @@ import retrofit2.http.Query
 
 interface RetrofitInterface {
     @GET("movie/upcoming") fun getUpcomingMovies(@Query("api_key") apiKey:String, @Query("page")page:String): Observable<UpcomingModel>
-    @GET("movie/{movie_id}") fun getOverview(@Path("movie_id") movieId:String, @Query("api_key") apiKey:String): Observable<OverviewMovie>
-    @GET("movie/{movie_id}/credits") fun getCredits(@Path("movie_id") movieId:String, @Query("api_key") apiKey:String): Observable<CreditMovie>
+    @GET("movie/{movie_id}") fun getOverview(@Path("movie_id") movieId:Int, @Query("api_key") apiKey:String): Observable<OverviewMovie>
+    @GET("movie/{movie_id}/credits") fun getCredits(@Path("movie_id") movieId:Int, @Query("api_key") apiKey:String): Observable<CreditMovie>
 
 }
 

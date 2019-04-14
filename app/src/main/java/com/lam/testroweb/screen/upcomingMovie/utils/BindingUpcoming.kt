@@ -20,19 +20,19 @@ fun setOurPictureToImageView(mImageView: ImageView, mUrl: String) {
 fun setReleaseDate(mTextView: TextView, mReleaseDate: String) {
 
     val nCalendar = Calendar.getInstance()
-    val sdf3 = SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH)
+    val sdf = SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH)
     val d1: Date?
     try {
-        d1 = sdf3.parse(mReleaseDate)
+        d1 = sdf.parse(mReleaseDate)
         nCalendar.time =d1
     } catch (e: Exception) {
         e.printStackTrace()
     }
 
     nCalendar.add(Calendar.DATE, 1)
-    val format1 = SimpleDateFormat("MMMM dd,YYYY")
-    val date1 = format1.format(nCalendar.time)
-    mTextView.text = date1
+    val format = SimpleDateFormat("MMMM dd, YYYY")
+    val date = format.format(nCalendar.time)
+    mTextView.text = date
 }
 
 @BindingAdapter(value = ["vote_progress"], requireAll = false)

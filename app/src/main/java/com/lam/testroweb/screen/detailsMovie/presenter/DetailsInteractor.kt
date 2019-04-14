@@ -1,7 +1,7 @@
 package com.lam.testroweb.screen.detailsMovie.presenter
 
 import com.lam.testroweb.model.DetailsMovie
-import com.lam.testroweb.screen.upcomingMovie.repositorys.RepositoryUpcomingWS
+import com.lam.testroweb.repositorys.RepositoryUpcomingWS
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers

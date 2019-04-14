@@ -10,14 +10,14 @@ import com.lam.testroweb.BR
 import com.lam.testroweb.R
 import com.lam.testroweb.model.UpcomingInfo
 
-class UpcominMoieAdapter: RecyclerView.Adapter<UpcominMoieAdapter.PaymentMethodHolder>() {
+class UpcomingMovieAdapter(var upcomingActivity:UpcomingMovieActivity): RecyclerView.Adapter<UpcomingMovieAdapter.PaymentMethodHolder>() {
 
     private var upcomingMoviedInfoList: MutableList<UpcomingInfo> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PaymentMethodHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding: ViewDataBinding = DataBindingUtil.inflate(layoutInflater, R.layout.row_upcoming_movie, parent, false)
-        return PaymentMethodHolder(binding)
+        return PaymentMethodHolder(binding,upcomingActivity)
     }
 
 
@@ -30,9 +30,10 @@ class UpcominMoieAdapter: RecyclerView.Adapter<UpcominMoieAdapter.PaymentMethodH
         return upcomingMoviedInfoList.size
     }
 
-    class PaymentMethodHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
+    class PaymentMethodHolder(private val binding: ViewDataBinding, var activity:UpcomingMovieActivity) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: UpcomingInfo) {
             binding.setVariable(BR.upcomingInfo, data)
+            binding.setVariable(BR.upcomingActivity, activity)
             binding.executePendingBindings()
         }
 
@@ -45,4 +46,5 @@ class UpcominMoieAdapter: RecyclerView.Adapter<UpcominMoieAdapter.PaymentMethodH
         upcomingMoviedInfoList.addAll(listPaymentInfo)
         notifyDataSetChanged()
     }
+
 }

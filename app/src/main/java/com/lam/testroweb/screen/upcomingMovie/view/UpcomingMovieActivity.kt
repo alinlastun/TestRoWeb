@@ -3,13 +3,11 @@ package com.lam.testroweb.screen.upcomingMovie.view
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.WindowManager
-import android.widget.ProgressBar
-import android.widget.TextView
 import com.lam.testroweb.databinding.ActivityMainBinding
+import com.lam.testroweb.mMovieId
 import com.lam.testroweb.model.UpcomingModel
 import com.lam.testroweb.screen.addMovie.AddMovieActivity
 import com.lam.testroweb.screen.detailsMovie.view.DetailsActivity
@@ -29,10 +27,10 @@ class UpcomingMovieActivity : AppCompatActivity(),UpcomingView {
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         mBinding = DataBindingUtil.setContentView(this, com.lam.testroweb.R.layout.activity_main)
 
-        nRecylerViewUpComing.setUpcomingInfoAdapter()
+        nRecylerViewUpComing.setUpcomingInfoAdapter(this)
         upcomingPresenter = UpcomingPresenter(this, UpcomingInteractor())
         nAddMovie.setOnClickListener {
-            startActivity(Intent(this, DetailsActivity::class.java))
+            startActivity(Intent(this, AddMovieActivity::class.java))
         }
 
     }
@@ -43,11 +41,16 @@ class UpcomingMovieActivity : AppCompatActivity(),UpcomingView {
     }
 
     override fun getSuccessData(upcomingModel: UpcomingModel) {
-        (nRecylerViewUpComing.adapter as UpcominMoieAdapter).addUpcomingMovieInfo(upcomingModel.results)
+        (nRecylerViewUpComing.adapter as UpcomingMovieAdapter).addUpcomingMovieInfo(upcomingModel.results)
     }
 
     override fun getErrorData(strError: String) {
         Log.d("eeasdfasd","getErrorData: ${strError}")
+    }
+
+    fun onClickItemUpcomingMovie(idMovie: Int){
+        mMovieId= idMovie
+        startActivity(Intent(this,DetailsActivity::class.java))
     }
 
 

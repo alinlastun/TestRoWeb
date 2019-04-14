@@ -1,4 +1,4 @@
-package com.lam.testroweb.screen.upcomingMovie.repositorys
+package com.lam.testroweb.repositorys
 
 import com.lam.testroweb.apiKey
 import com.lam.testroweb.mMovieId
