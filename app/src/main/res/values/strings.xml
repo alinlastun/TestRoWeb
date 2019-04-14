@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">TestRoWeb</string>
+
+    <string name="movies">Movies</string>
+    <string name="add_movie">Add movie</string>
+    <string name="filters">Filters</string>
+    <string name="search">Search</string>
+    <string name="result_search">Movies based on your search</string>
+    <string name="movie_details">Movie details</string>
+    <string name="movie_poster">Movie poster</string>
+    <string name="details_title1">Original title</string>
+    <string name="details_title2">Movie overview</string>
+    <string name="details_title3">IMDB ID</string>
+    <string name="add_file_info">Add images (png, jpg), pdf or excel\n files no larger than 2 MB</string>
+    <string name="select_files">Select files</string>
+    <string name="overview">Overview</string>
+    <string name="featured_crew">Featured Crew</string>
+    <string name="top_billed_cast">Top Billed Cast</string>
+</resources>
