@@ -14,7 +14,7 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".screen.detailsMovie.DetailsActivity">
+        <activity android:name=".screen.detailsMovie.view.DetailsActivity">
         </activity>
         <activity android:name=".screen.upcomingMovie.view.UpcomingMovieActivity">
             <intent-filter>

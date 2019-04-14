@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.lam.testroweb.databinding.ActivityMainBinding
 import com.lam.testroweb.model.UpcomingModel
 import com.lam.testroweb.screen.addMovie.AddMovieActivity
+import com.lam.testroweb.screen.detailsMovie.view.DetailsActivity
 import com.lam.testroweb.screen.upcomingMovie.presenter.UpcomingInteractor
 import com.lam.testroweb.screen.upcomingMovie.presenter.UpcomingPresenter
 import com.lam.testroweb.screen.upcomingMovie.utils.setUpcomingInfoAdapter
@@ -31,7 +32,7 @@ class UpcomingMovieActivity : AppCompatActivity(),UpcomingView {
         nRecylerViewUpComing.setUpcomingInfoAdapter()
         upcomingPresenter = UpcomingPresenter(this, UpcomingInteractor())
         nAddMovie.setOnClickListener {
-            startActivity(Intent(this, AddMovieActivity::class.java))
+            startActivity(Intent(this, DetailsActivity::class.java))
         }
 
     }
