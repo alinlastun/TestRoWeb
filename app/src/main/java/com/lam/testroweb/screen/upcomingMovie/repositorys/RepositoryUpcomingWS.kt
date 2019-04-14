@@ -17,14 +17,4 @@ class RepositoryUpcomingWS {
             .subscribeOn(Schedulers.io())
     }
 
-    fun getDetails(): MediatorLiveData<FinalAddresses> {
-
-        val mFinalAddresses = FinalAddresses()
-
-        val mLiveDataMediator = MediatorLiveData<FinalAddresses>()
-        mLiveDataMediator.addSource(getAddress()) { value -> if (value != null) addAddresses(mLiveDataMediator, mFinalAddresses, value) }
-        mLiveDataMediator.addSource(getWsStatus()) { value -> if (value != null) addWsStatus(mLiveDataMediator, mFinalAddresses, value) }
-        mLiveDataMediator.addSource(getSyncStatus()) { value -> if (value != null) addSyncStatus(mLiveDataMediator, mFinalAddresses, value) }
-        return mLiveDataMediator
-    }
 }
