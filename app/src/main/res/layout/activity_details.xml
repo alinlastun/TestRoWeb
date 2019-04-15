@@ -219,7 +219,7 @@
                         app:layout_constraintTop_toBottomOf="@id/nTitleOveriew"
                         android:textColor="@color/subtitleTextColor"
                         android:layout_width="0dp"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_marginEnd="10dp"

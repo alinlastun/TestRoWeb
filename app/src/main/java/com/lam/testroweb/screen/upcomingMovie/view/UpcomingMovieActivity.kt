@@ -1,5 +1,6 @@
 package com.lam.testroweb.screen.upcomingMovie.view
 
+import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -9,6 +10,7 @@ import android.view.WindowManager
 import com.lam.testroweb.databinding.ActivityMainBinding
 import com.lam.testroweb.mMovieId
 import com.lam.testroweb.model.UpcomingModel
+import com.lam.testroweb.repositorys.RepositoryAddMovieDB
 import com.lam.testroweb.screen.addMovie.AddMovieActivity
 import com.lam.testroweb.screen.detailsMovie.view.DetailsActivity
 import com.lam.testroweb.screen.upcomingMovie.presenter.UpcomingInteractor
@@ -38,6 +40,9 @@ class UpcomingMovieActivity : AppCompatActivity(),UpcomingView {
     override fun onResume() {
         super.onResume()
         upcomingPresenter.getNewsData()
+
+
+
     }
 
     override fun getSuccessData(upcomingModel: UpcomingModel) {
@@ -52,6 +57,7 @@ class UpcomingMovieActivity : AppCompatActivity(),UpcomingView {
         mMovieId= idMovie
         startActivity(Intent(this,DetailsActivity::class.java))
     }
+
 
 
 
