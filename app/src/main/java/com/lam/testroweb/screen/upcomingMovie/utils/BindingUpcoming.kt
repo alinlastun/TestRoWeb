@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,20 +22,17 @@ fun setOurPictureToImageView(mImageView: ImageView, mUrl: String) {
 @BindingAdapter(value = ["release_date"], requireAll = false)
 fun setReleaseDate(mTextView: TextView, mReleaseDate: String) {
 
-    val nCalendar = Calendar.getInstance()
-    val sdf = SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH)
-    val d1: Date?
-    try {
-        d1 = sdf.parse(mReleaseDate)
-        nCalendar.time =d1
-    } catch (e: Exception) {
-        e.printStackTrace()
-    }
 
-    nCalendar.add(Calendar.DATE, 1)
-    val format = SimpleDateFormat("MMMM dd, YYYY")
-    val date = format.format(nCalendar.time)
-    mTextView.text = date
+    val parsed: Date?
+    val dfInput = SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
+    val dfOutput = SimpleDateFormat("MMMM dd, YYYY", java.util.Locale.getDefault())
+    try {
+        parsed = dfInput.parse(mReleaseDate)
+        val outputDate = dfOutput.format(parsed)
+        mTextView.text =outputDate
+    } catch (e: ParseException) {
+
+    }
 }
 
 @BindingAdapter(value = ["vote_progress"], requireAll = false)
