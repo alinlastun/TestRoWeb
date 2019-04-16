@@ -48,7 +48,6 @@ class UpcomingMovieActivity : AppCompatActivity(),UpcomingView {
         repositoryDB.getMovieFromDB().observe(this, Observer {
 
             if(it!=null){
-                Log.d("ASdfasdf","getMovieFromDB: size " +  it.size.toString())
                 for (movie in it){
                     (nRecylerViewUpComing.adapter as UpcomingMovieAdapter).addUpcomingMovieInfo(movie.results)
                 }
@@ -95,7 +94,6 @@ class UpcomingMovieActivity : AppCompatActivity(),UpcomingView {
     }
 
     override fun getSuccessData(upcomingModelDB: UpcomingModelDB) {
-        Log.d("ASdfasdf","getSuccessData" )
         if(repositoryDB.getMovieFromDBList().size<1){
             repositoryDB.insertMovieToDB(upcomingModelDB)
         }
