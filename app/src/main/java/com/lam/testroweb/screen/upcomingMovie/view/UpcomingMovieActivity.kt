@@ -55,7 +55,7 @@ class UpcomingMovieActivity : AppCompatActivity(),UpcomingView {
         /**
         When search a movie is showing from DB the item with that name.
         Every time when is typed a character is looked up in DB for a movie with that name and
-        adapter is trigger with new list of movie
+        adapter is triggered with new list of movie
          */
         nSearchText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {}
@@ -66,7 +66,7 @@ class UpcomingMovieActivity : AppCompatActivity(),UpcomingView {
                 val upcomingInfoList:MutableList<UpcomingInfo> = ArrayList()
                 for (upcomingModelDb in repositoryDB.getMovieFromDBList()){
                     for (upcoming in upcomingModelDb.results ){
-                        if(upcoming.title == nSearchText.text.toString()){
+                        if(upcoming.title.equals(nSearchText.text.toString(),ignoreCase = true)){
                             upcomingInfoList.add(upcoming)
                         }
                     }
