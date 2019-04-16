@@ -13,7 +13,7 @@ class DetailsPresenter(private var detailsView: DetailsView, private val details
         detailsView.getErrorData(strError)
     }
 
-    fun getNewsData() {
+    fun getDetailsMoieData() {
         detailsInteractor.requestDataAPI(this)
     }
 }

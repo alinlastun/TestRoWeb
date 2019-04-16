@@ -1,11 +1,11 @@
 package com.lam.testroweb.repositorys
 
 import com.lam.testroweb.apiKey
+import com.lam.testroweb.database.model.UpcomingModelDB
 import com.lam.testroweb.mMovieId
 import com.lam.testroweb.model.CreditMovie
 import com.lam.testroweb.model.DetailsMovie
 import com.lam.testroweb.model.OverviewMovie
-import com.lam.testroweb.model.UpcomingModel
 import com.lam.testroweb.page
 import com.lam.testroweb.retrofit.RetrofitService
 import io.reactivex.Observable
@@ -15,7 +15,7 @@ import io.reactivex.schedulers.Schedulers
 
 class RepositoryUpcomingWS {
 
-    fun getUpcomingMovie(): Observable<UpcomingModel> {
+    fun getUpcomingMovie(): Observable<UpcomingModelDB> {
         return RetrofitService().getInstance().interfaces.getUpcomingMovies(apiKey,page)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())

@@ -1,8 +1,8 @@
 package com.lam.testroweb.screen.upcomingMovie.view
 
-import com.lam.testroweb.model.UpcomingModel
+import com.lam.testroweb.database.model.UpcomingModelDB
 
 interface UpcomingView {
-    fun getSuccessData(upcomingModel: UpcomingModel)
+    fun getSuccessData(upcomingModelDB: UpcomingModelDB)
     fun getErrorData(strError: String)
 }

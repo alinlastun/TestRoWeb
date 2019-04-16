@@ -8,67 +8,68 @@ import android.support.v7.app.AppCompatActivity
 import android.view.WindowManager
 import android.widget.Toast
 import com.lam.testroweb.R
-import com.lam.testroweb.database.model.AddMovieDB
-import com.lam.testroweb.repositorys.RepositoryAddMovieDB
+import com.lam.testroweb.model.UpcomingInfo
+import com.lam.testroweb.repositorys.RepositoryMovieDB
 import kotlinx.android.synthetic.main.add_movie.*
 
 
 class AddMovieActivity : AppCompatActivity() {
 
     private lateinit var mBinding: com.lam.testroweb.databinding.AddMovieBinding
-     private lateinit var repositoryDB :RepositoryAddMovieDB
+    private lateinit var repositoryDB: RepositoryMovieDB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         mBinding = DataBindingUtil.setContentView(this, R.layout.add_movie)
-        repositoryDB = RepositoryAddMovieDB(this)
+        repositoryDB = RepositoryMovieDB(this)
 
         nArrowLeft.setOnClickListener { onBackPressed() }
         nContainerAddMovie.setOnClickListener { selectFile() }
         nAddMovie.setOnClickListener {
-            if(isFieldsValidated()){
-                repositoryDB.addMOvieToDB(getInfoMovie())
+            if (isFieldsValidated()) {
+                val movieDB = repositoryDB.getMovieFromDBList()[0]
+                movieDB.results.add(0, getInfoMovie())
+                repositoryDB.deleteMovie()
+                repositoryDB.insertMovieToDB(movieDB)
                 finish()
-            }else{
-                Toast.makeText(this,"You have empty fields",Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "You have empty fields", Toast.LENGTH_LONG).show()
             }
 
         }
 
-
-
-
     }
 
-    private fun getInfoMovie(): AddMovieDB {
-        val mMovieDB = AddMovieDB(title = "",overview = "")
+    private fun getInfoMovie(): UpcomingInfo {
+        val upcomingInfo = UpcomingInfo()
 
-        if(nETOriginal.text.isNotEmpty()){
-            mMovieDB.title = nETOriginal.text.toString()
+        if (nETOriginal.text.isNotEmpty()) {
+            upcomingInfo.title = nETOriginal.text.toString()
         }
 
-        if(nETOverview.text.isNotEmpty()){
-            mMovieDB.overview = nETOverview.text.toString()
+        if (nETOverview.text.isNotEmpty()) {
+            upcomingInfo.overview = nETOverview.text.toString()
         }
+        upcomingInfo.poster_path=""
+        upcomingInfo.backdrop_path=""
 
-        return mMovieDB
+        return upcomingInfo
     }
 
 
-
-    private fun isFieldsValidated():Boolean{
+    private fun isFieldsValidated(): Boolean {
         var allFieldsValidate = true
 
-        if(nETOriginal.text.isEmpty()){
-            allFieldsValidate=false
+        if (nETOriginal.text.isEmpty()) {
+            allFieldsValidate = false
         }
 
         return allFieldsValidate
     }
 
-    private fun selectFile(){
-        val intent =Intent(Intent.ACTION_GET_CONTENT)
+    private fun selectFile() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "*/*"
         startActivityForResult(intent, 1)
 

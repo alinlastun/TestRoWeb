@@ -1,9 +1,7 @@
 package com.lam.testroweb.screen.upcomingMovie.presenter
 
-import com.lam.testroweb.model.DetailsMovie
-import com.lam.testroweb.model.UpcomingModel
+import com.lam.testroweb.database.model.UpcomingModelDB
 import com.lam.testroweb.repositorys.RepositoryUpcomingWS
-import com.lam.testroweb.screen.detailsMovie.presenter.DetailsInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -11,7 +9,7 @@ import io.reactivex.schedulers.Schedulers
 open class UpcomingInteractor {
     private var mRepositoryWS = RepositoryUpcomingWS()
     interface OnFinishedListener {
-        fun onResultSuccess(upcomingModel: UpcomingModel)
+        fun onResultSuccess(upcomingModel: UpcomingModelDB)
         fun onResultFail(strError: String)
     }
 

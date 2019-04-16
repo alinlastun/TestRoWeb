@@ -2,6 +2,7 @@ package com.lam.testroweb.screen.upcomingMovie.utils
 
 import android.annotation.SuppressLint
 import android.databinding.BindingAdapter
+import android.util.Log
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -13,6 +14,8 @@ import java.util.*
 
 @BindingAdapter(value = ["picture_url"], requireAll = false)
 fun setOurPictureToImageView(mImageView: ImageView, mUrl: String) {
+
+    Log.d("asdfasdf", "mUrl: $mUrl")
     if (!mUrl.isEmpty() && mUrl.isNotEmpty()) {
         Glide.with(mImageView.context).load("https://image.tmdb.org/t/p/w780/$mUrl").into(mImageView)
     }
