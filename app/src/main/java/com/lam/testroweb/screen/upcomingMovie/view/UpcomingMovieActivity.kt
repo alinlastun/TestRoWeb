@@ -66,7 +66,7 @@ class UpcomingMovieActivity : AppCompatActivity(),UpcomingView {
                 val upcomingInfoList:MutableList<UpcomingInfo> = ArrayList()
                 for (upcomingModelDb in repositoryDB.getMovieFromDBList()){
                     for (upcoming in upcomingModelDb.results ){
-                        if(upcoming.title.equals(nSearchText.text.toString(),ignoreCase = true)){
+                        if(upcoming.title.contains(nSearchText.text.toString())){
                             upcomingInfoList.add(upcoming)
                         }
                     }
