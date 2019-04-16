@@ -115,6 +115,7 @@
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
+                android:id="@+id/nContainerAddMovie"
                 android:background="@drawable/search_bg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -162,6 +163,7 @@
                     android:textAlignment="center"/>
 
             <TextView
+                    android:id="@+id/nSelectFile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#22D889"

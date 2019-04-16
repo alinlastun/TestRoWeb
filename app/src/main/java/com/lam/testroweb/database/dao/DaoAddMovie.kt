@@ -5,16 +5,13 @@ import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
-import com.lam.testroweb.database.model.MovieDB
+import com.lam.testroweb.database.model.AddMovieDB
 
 @Dao
-interface DaoMovie {
-    @Query("select * from movie_table")
-    fun getMovie():LiveData<MutableList<MovieDB>>
+interface DaoAddMovie {
+    @Query("select * from add_movie_table")
+    fun getAddMovie():LiveData<MutableList<AddMovieDB>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovie(movieDB: MovieDB)
-
-    @Query("delete from movie_table")
-    fun deleteMovie()
+    fun insertAddMovie(movieDB: AddMovieDB)
 }

@@ -1,7 +1,9 @@
 package com.lam.testroweb.screen.upcomingMovie.presenter
 
+import com.lam.testroweb.model.DetailsMovie
 import com.lam.testroweb.model.UpcomingModel
 import com.lam.testroweb.repositorys.RepositoryUpcomingWS
+import com.lam.testroweb.screen.detailsMovie.presenter.DetailsInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -14,13 +16,15 @@ open class UpcomingInteractor {
     }
 
     fun requestDataAPI(onFinishedListener: OnFinishedListener): Disposable {
-            return mRepositoryWS.getUpcomingMovie()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ result -> onFinishedListener.onResultSuccess(result) },
-                    { error ->onFinishedListener.onResultFail(error.message!!)
+        return mRepositoryWS.getUpcomingMovie()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ result -> onFinishedListener.onResultSuccess(result) },
+                { error ->onFinishedListener.onResultFail(error.message!!)
                 })
     }
+
+
 
 
 

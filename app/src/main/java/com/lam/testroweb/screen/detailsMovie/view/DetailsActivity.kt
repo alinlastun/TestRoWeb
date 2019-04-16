@@ -41,7 +41,7 @@ class DetailsActivity : AppCompatActivity(),DetailsView {
 
     override fun onResume() {
         super.onResume()
-        detailsPresenter.getNewsData()
+       // detailsPresenter.getNewsData()
     }
 
     override fun getSuccessData(detailsModel: DetailsMovie) {

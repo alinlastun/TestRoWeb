@@ -4,10 +4,12 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
+import com.lam.testroweb.database.dao.DaoAddMovie
 import com.lam.testroweb.database.dao.DaoMovie
+import com.lam.testroweb.database.model.AddMovieDB
 import com.lam.testroweb.database.model.MovieDB
 
-@Database(entities = [(MovieDB::class)], version = 1, exportSchema = false)
+@Database(entities = [(AddMovieDB::class),(MovieDB::class)], version = 1, exportSchema = false)
 
 abstract class AppDataBase : RoomDatabase() {
     companion object {
@@ -21,5 +23,6 @@ abstract class AppDataBase : RoomDatabase() {
         }
     }
 
+    abstract fun daoAddMovie() : DaoAddMovie
     abstract fun daoMovie() : DaoMovie
 }

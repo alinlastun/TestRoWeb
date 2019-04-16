@@ -1,16 +1,17 @@
 package com.lam.testroweb.screen.addMovie
 
-import android.arch.lifecycle.Observer
+import android.app.Activity
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
 import com.lam.testroweb.R
-import com.lam.testroweb.database.model.MovieDB
+import com.lam.testroweb.database.model.AddMovieDB
 import com.lam.testroweb.repositorys.RepositoryAddMovieDB
 import kotlinx.android.synthetic.main.add_movie.*
+
 
 class AddMovieActivity : AppCompatActivity() {
 
@@ -22,20 +23,12 @@ class AddMovieActivity : AppCompatActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         mBinding = DataBindingUtil.setContentView(this, R.layout.add_movie)
         repositoryDB = RepositoryAddMovieDB(this)
-        nArrowLeft.setOnClickListener { onBackPressed() }
 
+        nArrowLeft.setOnClickListener { onBackPressed() }
+        nContainerAddMovie.setOnClickListener { selectFile() }
         nAddMovie.setOnClickListener {
             if(isFieldsValidated()){
                 repositoryDB.addMOvieToDB(getInfoMovie())
-                repositoryDB.getMovieFromDB().observe(this, Observer {
-                    if(it!=null){
-                        for (mMovie in it){
-                            Log.d("asdfasdf",mMovie.title)
-                            Log.d("asdfasdf",mMovie.overview)
-                        }
-                    }
-
-                })
                 finish()
             }else{
                 Toast.makeText(this,"You have empty fields",Toast.LENGTH_LONG).show()
@@ -44,10 +37,12 @@ class AddMovieActivity : AppCompatActivity() {
         }
 
 
+
+
     }
 
-    private fun getInfoMovie(): MovieDB {
-        val mMovieDB = MovieDB(title = "",overview = "")
+    private fun getInfoMovie(): AddMovieDB {
+        val mMovieDB = AddMovieDB(title = "",overview = "")
 
         if(nETOriginal.text.isNotEmpty()){
             mMovieDB.title = nETOriginal.text.toString()
@@ -70,5 +65,23 @@ class AddMovieActivity : AppCompatActivity() {
         }
 
         return allFieldsValidate
+    }
+
+    private fun selectFile(){
+        val intent =Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "*/*"
+        startActivityForResult(intent, 1)
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+
+            1 ->
+                if (resultCode == Activity.RESULT_OK) {
+                    val fileSelected = data?.data?.path
+                    Toast.makeText(this, fileSelected, Toast.LENGTH_LONG).show()
+                }
+        }
     }
 }

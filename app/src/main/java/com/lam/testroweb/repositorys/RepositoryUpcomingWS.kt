@@ -21,21 +21,25 @@ class RepositoryUpcomingWS {
             .subscribeOn(Schedulers.io())
     }
 
-    private fun getOverviewe(): Observable<OverviewMovie> {
+    private fun getOverview(): Observable<OverviewMovie> {
         return RetrofitService().getInstance().interfaces.getOverview(mMovieId,apiKey)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
     }
 
     private fun getCredits(): Observable<CreditMovie> {
         return RetrofitService().getInstance().interfaces.getCredits(mMovieId,apiKey)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
     }
 
-     fun getInfoMovie(): Observable<DetailsMovie> {
-         return Observable.zip(
-             getOverviewe(),
-             getCredits(),
-             BiFunction<OverviewMovie, CreditMovie,  DetailsMovie> { res1, res2-> DetailsMovie(res1, res2)})
-             .observeOn(AndroidSchedulers.mainThread())
-             .subscribeOn(Schedulers.io())
-     }
+    fun getInfoMovie(): Observable<DetailsMovie> {
+        return Observable.zip(
+            getOverview(),
+            getCredits(),
+            BiFunction<OverviewMovie, CreditMovie,  DetailsMovie> { res1, res2-> DetailsMovie(res1, res2)})
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+    }
 
 }
