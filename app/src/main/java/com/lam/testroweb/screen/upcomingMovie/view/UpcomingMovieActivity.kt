@@ -25,7 +25,6 @@ import java.util.ArrayList
 
 class UpcomingMovieActivity : AppCompatActivity(),UpcomingView {
 
-
     private lateinit var mBinding: ActivityMainBinding
     private lateinit var upcomingPresenter: UpcomingPresenter
     private lateinit var repositoryDB: RepositoryMovieDB
@@ -37,15 +36,19 @@ class UpcomingMovieActivity : AppCompatActivity(),UpcomingView {
 
         repositoryDB = RepositoryMovieDB(this)
         nRecylerViewUpComing.setUpcomingInfoAdapter(this)
+
         upcomingPresenter = UpcomingPresenter(this, UpcomingInteractor())
         upcomingPresenter.getNewsData()
+
         nAddMovie.setOnClickListener {
             startActivity(Intent(this, AddMovieActivity::class.java))
         }
         nArrowLeft.setOnClickListener {onBackPressed()}
 
         repositoryDB.getMovieFromDB().observe(this, Observer {
+
             if(it!=null){
+                Log.d("ASdfasdf","getMovieFromDB: size " +  it.size.toString())
                 for (movie in it){
                     (nRecylerViewUpComing.adapter as UpcomingMovieAdapter).addUpcomingMovieInfo(movie.results)
                 }
@@ -87,14 +90,16 @@ class UpcomingMovieActivity : AppCompatActivity(),UpcomingView {
 
     override fun onResume() {
         super.onResume()
-        if(repositoryDB.getMovieFromDBList().size<0){
-            upcomingPresenter.getNewsData()
-        }
+        upcomingPresenter.getNewsData()
 
     }
 
     override fun getSuccessData(upcomingModelDB: UpcomingModelDB) {
-        repositoryDB.insertMovieToDB(upcomingModelDB)
+        Log.d("ASdfasdf","getSuccessData" )
+        if(repositoryDB.getMovieFromDBList().size<1){
+            repositoryDB.insertMovieToDB(upcomingModelDB)
+        }
+
     }
 
 

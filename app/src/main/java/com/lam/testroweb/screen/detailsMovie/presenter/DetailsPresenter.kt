@@ -1,7 +1,7 @@
 package com.lam.testroweb.screen.detailsMovie.presenter
 
 import com.lam.testroweb.model.DetailsMovie
-import com.lam.testroweb.screen.upcomingMovie.presenter.DetailsView
+import com.lam.testroweb.screen.detailsMovie.view.DetailsView
 
 
 class DetailsPresenter(private var detailsView: DetailsView, private val detailsInteractor: DetailsInteractor):DetailsInteractor.OnFinishedListener  {

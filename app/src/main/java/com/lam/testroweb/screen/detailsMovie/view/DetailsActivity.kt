@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.lam.testroweb.model.DetailsMovie
 import com.lam.testroweb.screen.detailsMovie.presenter.DetailsInteractor
 import com.lam.testroweb.screen.detailsMovie.presenter.DetailsPresenter
-import com.lam.testroweb.screen.upcomingMovie.presenter.DetailsView
 import kotlinx.android.synthetic.main.activity_details.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -20,7 +19,7 @@ import com.bumptech.glide.request.RequestOptions
 
 
 
-class DetailsActivity : AppCompatActivity(),DetailsView {
+class DetailsActivity : AppCompatActivity(), DetailsView {
 
 
     private lateinit var mBinding: com.lam.testroweb.databinding.ActivityDetailsBinding
